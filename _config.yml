@@ -5,7 +5,7 @@ reading_time:     true
 words_per_minute: 20
 # Your site's domain goes here (eg: https://mmistakes.github.io, http://yourdomain.com, etc)
 # When testing locally leave blank or use http://localhost:4000
-url:
+url: blog.fangjiahui.me
 
 # Owner/author information
 owner:
@@ -87,4 +87,4 @@ exclude:
   - package.json
   - spec
   - tmp
-baseurl: /page-blog
+baseurl: blog.fangjiahui.me
