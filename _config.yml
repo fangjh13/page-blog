@@ -87,4 +87,4 @@ exclude:
   - package.json
   - spec
   - tmp
-baseurl: blog.fangjiahui.me
+baseurl: ''
