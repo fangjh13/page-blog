@@ -4,7 +4,7 @@ title: About Me
 image:
   feature: abstract-5.jpg
 comments: false
-modified: 2016-02-01
+modified: 2017-11-14
 ---
 
 Hi, my name is  Fython. I usually live in HangZhou, China.  Interested in computer, electronic instrument and reading books. I am learning to program. I love it.
