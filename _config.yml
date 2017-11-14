@@ -1,5 +1,5 @@
 title:            Fython's Blog
-description:      You can not beat something with nothing.
+description:      Fython's Blog is my personal Blog
 disqus_shortname: fython-pages
 reading_time:     true
 words_per_minute: 20
@@ -11,7 +11,7 @@ url: blog.fangjiahui.me
 owner:
   name:           Fython
   avatar:         avatar.jpg
-  bio:            "You can not beat something with nothing."
+  bio:            "Hello, I'm Fython. Love life, love coding."
   email:          fang.jia.hui123@gmail.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        https://twitter.com/fythonfang 

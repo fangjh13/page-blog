@@ -122,7 +122,8 @@ body {
 	h2 {
 		margin: 0;
 		color: #fff;
-		text-transform: uppercase;
+        text-transform: none;
+        font-size: 1.4em;
 
 		@media #{$medium} {
 			a {
