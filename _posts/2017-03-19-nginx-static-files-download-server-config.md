@@ -5,7 +5,7 @@ description: 用Nginx做内网的文件下载服务器
 modified: 2017-08-24
 published: true
 tags: [Nginx]
-readtimes: 10
+readtimes: 5
 image:
   background: triangular.png
   feature: NGINX-3.png

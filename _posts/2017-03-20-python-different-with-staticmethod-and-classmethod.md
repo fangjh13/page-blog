@@ -4,7 +4,7 @@ title: Python类方法与静态方法的区别 | different between staticmethod 
 description: Python中的装饰器@staticmethod和@classmethod的区别
 modified: 2017-05-15
 tags: [Python]
-readtimes: 20
+readtimes: 10
 published: true
 ---
 
