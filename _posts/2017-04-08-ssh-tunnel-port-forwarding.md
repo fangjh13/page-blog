@@ -3,14 +3,14 @@ layout: post
 title: SSH进阶 端口转发 内网穿透
 description: SSH Tunnel - Port Forwarding
 modified: 2017-07-20
-tags: [SSH]
+tags: [SSH, Shell]
 readtimes: 10
 published: true
 image:
   background: triangular.png
 ---
 
-![](/images/ssh-10.jpg)
+![](https://omv6w8gwo.qnssl.com/ssh-10.jpg)
 
 > Secure Shell (SSH) is a cryptographic network protocol for operating network services securely over an unsecured network. The best known example application is for remote login to computer systems by users.
 
