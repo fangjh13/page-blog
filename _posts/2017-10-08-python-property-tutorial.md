@@ -100,7 +100,7 @@ class Student:
             self.__score = score
 ```
 
-了Python提供的property装饰器，结果和上面一样。但更优雅可读
+运用了Python提供的property装饰器，结果和上面一样。但更优雅可读
 
 ```python
 >>> s = Student(101)
