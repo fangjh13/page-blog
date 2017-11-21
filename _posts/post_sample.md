@@ -10,3 +10,5 @@ image:
   feature: 
   background: 
 ---
+
+{: .notice}
