@@ -2,7 +2,7 @@
 layout: post
 title: Git工作流
 description: Git workflow
-modified: 
+modified: 2017-11-22
 tags: [Git]
 readtimes: 15 
 published: true
@@ -48,7 +48,7 @@ published: true
 
 1. 开发人员首先从*`develop`*分支`checkout -b feature/xxx`一个待开发的分支，开发和测试。
 2. 当开发和测试都完成后将*`feature/xxx`*合并到*`develop`*并删除清理。当然其中有新功能时可以再新建一个*`feature`*分支并最后合并到开发分支。
-3. 终于等到release了，现在开发分支汇集了所有新开发的功能并无重大bug，我们从*`develop`*分支`checkout`一个*`release/v1.0.0`*的分支进行更加全面的测试准备发布，有bug就在*`release`*分支修复，正式发布就是把这个*`release`*分支合并到*`master`*分支打上`tag`。当然不要忘记将发布分支合并到**``develop``**分支以保持和*`master`*代码同步一致。
+3. 终于等到release了，现在开发分支汇集了所有新开发的功能并无重大bug，我们从*`develop`*分支`checkout`一个*`release/v1.0.0`*的分支进行更加全面的测试准备发布，有bug就在*`release`*分支修复，正式发布就是把这个*`release`*分支合并到*`master`*分支打上`tag`。当然不要忘记将发布分支合并到*`develop`*分支以保持和*`master`*代码同步一致。
 4. 可能发布后有紧急的bug需要修复那就从*`master`*分支`checkout`一个*`hotfixes/missing-link`*分枝修复bug并合并到*`master`*和*`develop`*最后删除。
 
 ### 总结一下
