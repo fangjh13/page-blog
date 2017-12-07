@@ -17,8 +17,8 @@ class TestStaticMethod(object):
     a = 0
     def __init__(self):
         TestStaticMethod.a += 1
-   @staticmethod
-   def smethod():
+    @staticmethod
+    def smethod():
        print('static method')
 
 bar = TestStaticMethod()
