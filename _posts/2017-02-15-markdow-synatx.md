@@ -2,7 +2,7 @@
 layout: post
 title: Markdown quick reference
 description: Markdown syntax reference
-modified: 
+modified: 2018-01-22
 tags: [Mardown]
 image:
   feature: markdown1-4.png
@@ -174,6 +174,13 @@ def foo():
 
 You can create tables by assembling a list of words and dividing them with hyphens - (for the first row), and then separating each column with a pipe
 
+```
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+```
+
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
@@ -182,6 +189,8 @@ Content in the first column | Content in the second column
 
 ### Strikethrough
 
-`~~this~~`
+```
+~~this~~
+```
 
 Any word wrapped with two tildes (like ~~this~~) will appear crossed out.
