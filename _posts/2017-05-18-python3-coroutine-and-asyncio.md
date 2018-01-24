@@ -195,7 +195,7 @@ Compute 1 + 2 ...
 
 ![](https://omv6w8gwo.qnssl.com/coroutine_chain.png)
 
-### 0x04. 
+### 0x04. one more thing
 Python3.5中又添加了` async def`、`await`这样就使得协程变得更加易用了。[PEP 492](https://www.python.org/dev/peps/pep-0492/)中详细说明了使用`async`、`await`来定义`coroutine`避免和`generator`混淆。
 
 只要把`@asyncio.coroutine`替换成`async`加在函数头，把`yield from`替换成`await`，其余不变就好了。但不能在同一个`coroutine`混用，就是用了`@asyncio.coroutine`而里面却用`yield from`中断。
@@ -210,7 +210,109 @@ async def print_sum(x, y):
     result = await compute(x, y)
     print("%s + %s = %s" % (x, y, result))
 ```
-   
+
+还有就是`await`之后必须接支持协程的函数或语句上面`asyncio.sleep(1)`就是一个模拟异步IO的过程，否者程序会同步执行看下面例子
+
+```python
+import time
+import asyncio
+import threading
+
+async def normal_sleep(w, i):
+    print('[{}] id ({}) normal sleep 2 seconds.'.format(w, i))
+    time.sleep(1)
+    print('[{}] id ({}) ok'.format(w, i))
+
+async def worker(name):
+    print('-> start {} worker {}'.format(name, threading.current_thread().name))
+    for i in range(3):
+        print('handle {}..'.format(i))
+        await normal_sleep(name, i)
+    print('<- end {}.\n'.format(name))
+
+start = time.time()
+loop = asyncio.get_event_loop()
+
+# 启动两个worker
+tasks = [worker('A'), worker('B')]
+loop.run_until_complete(asyncio.wait(tasks))
+loop.close()
+
+print('Total time {:.2f}s'.format(time.time()-start))
+```
+
+运行结果
+
+```
+-> start A worker MainThread
+handle 0..
+[A] id (0) normal sleep 2 seconds.
+[A] id (0) ok
+handle 1..
+[A] id (1) normal sleep 2 seconds.
+[A] id (1) ok
+handle 2..
+[A] id (2) normal sleep 2 seconds.
+[A] id (2) ok
+<- end A.
+
+-> start B worker MainThread
+handle 0..
+[B] id (0) normal sleep 2 seconds.
+[B] id (0) ok
+handle 1..
+[B] id (1) normal sleep 2 seconds.
+[B] id (1) ok
+handle 2..
+[B] id (2) normal sleep 2 seconds.
+[B] id (2) ok
+<- end B.
+
+Total time 6.02s
+```
+
+观察以上输出，发现程序共一个线程是串行执行的，就是因为使用了`time.sleep`，现在我们改成`asyncio.sleep(2)`
+
+```python
+...
+async def async_sleep():
+    print('async sleep 2 seconds.')
+    await asyncio.sleep(1)
+...
+```
+
+运行结果
+
+```
+-> start A worker MainThread
+handle 0..
+[A] id (0) normal sleep 2 seconds.
+-> start B worker MainThread
+handle 0..
+[B] id (0) normal sleep 2 seconds.
+[A] id (0) ok
+handle 1..
+[A] id (1) normal sleep 2 seconds.
+[B] id (0) ok
+handle 1..
+[B] id (1) normal sleep 2 seconds.
+[A] id (1) ok
+handle 2..
+[A] id (2) normal sleep 2 seconds.
+[B] id (1) ok
+handle 2..
+[B] id (2) normal sleep 2 seconds.
+[A] id (2) ok
+<- end A.
+
+[B] id (2) ok
+<- end B.
+
+Total time 3.01s
+```
+
+程序也共一个线程，当遇到`asyncio.sleep(1)`时会被挂起，`EventLoop`去处理另一个任务并等待返回结果，总的运行时间大大减小，异步非阻塞，这看起来像是多线程在执行，这就是协程的最大特点。
+
 **参考**
 
 [http://www.dabeaz.com](http://www.dabeaz.com/coroutines/)

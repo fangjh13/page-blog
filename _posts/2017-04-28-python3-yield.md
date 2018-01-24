@@ -113,7 +113,7 @@ StopIteration
 
 `send(value)`会传递value给`yield`，并且返回下一个`yield`右边的值。`next()`也会传递给`yield`值只是值为`None`，返回`yield`右边的值，这个和`send`一样。所以第一次调用`next()`等同于`send(None)`开始一个生成器。
 
-*具体什么是协程，我记录在了[这里](http://www.fythonfang.com/blog/post/12)，欢迎参阅。*
+*具体什么是协程，我记录在了[这里]({{ sitebaseurl }}/python3-coroutine-and-asyncio/)，欢迎参阅。*
 
 ### 0x03. throw / close Method
 
