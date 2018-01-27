@@ -4,7 +4,7 @@ title: Python特殊方法
 description: Python常用特殊方法总结
 modified:
 tags: [Python]
-readtimes: 20
+readtimes: 15
 published: True
 ---
 
@@ -73,7 +73,7 @@ __init__ called
 
 - `__ge__(self, other)`
 
-以上方法分别对应`<`，`<=`，`==`，`!=`，`>`，`>=`操作符时返回的值，通常情况下要求返回`True`或`False`，但其实可以返回任何值。在`if`语句中如果返回非`True`或`False`，会自动对返回调用`bool`来判断。
+Python2中有`__cmp__`方法和`cmp()`函数，在Python3中已经废弃没有了代替的是以上6个方法分别对应`<`，`<=`，`==`，`!=`，`>`，`>=`操作符时返回的值，通常情况下要求返回`True`或`False`，但其实可以返回任何值。在`if`语句中如果返回非`True`或`False`，会自动对返回调用`bool`来判断。
 
 - `__hash__(self)`
 
@@ -210,6 +210,21 @@ print(AustralianPhilosopher.default_name)
 
 `AustralianPhilosopher`继承自`Philosopher`而后者定义了`__init_subclass__`，此方法接收子类定义时继承的参数。
 
+### 可调用对象(callable objects)
+
+- `__call__(self[,args...])`
+
+    使实例对象可以像函数一样调用，`x(arg1, arg2, ...)`就等于调用`x.__call__(arg1, arg2, ...)`
+
+```python
+class A:
+    def __call__(self, *args, **kwargs):
+        print(args, kwargs)
+
+a = A()
+a('a', 'b', c='d')  # 可被调用  输出('a', 'b') {'c': 'd'}
+```
+
 ### 容器(container)类型
 
 容器类代表的是sequences(list, tuples)，mappings(dict, set)
@@ -229,6 +244,10 @@ print(AustralianPhilosopher.default_name)
 - `__delitem__(self, key)`
 
     当`del self[key]`时被调用
+
+- `__missing__(self, key)`
+
+    当调用`self[key]`时`__gititem__`字典中间值不存在时返回的值
 
 ```python
 class A:
