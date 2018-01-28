@@ -8,9 +8,6 @@ readtimes: 15
 published: True
 ---
 
-
-## Python中的特殊方法
-
 python在定义class时有很多特殊方法可以定义，它们一般都是以双下划线开头和结尾如`__init__`、`__call__`、`__lt__`、`__iter__`、`__setattr__`、`__setitem__`等，下面将对这些常用方法作一些总结。
 
 ### class基本方法
@@ -284,7 +281,7 @@ print(a['foo'])  # rasie KeyError
 
 - `__iter__(self)`
 
-    当定义了一个`__iter__`方法后，这个对象就是可迭代的(iterable)，也就是说可以用于`for`这种循环。该方法应该返回一个新的可迭代对象(`iter`生成)。
+    当定义了一个`__iter__`方法后，这个对象就是可迭代的(iterable)，也就是说可以用于`for`这种循环。该方法应该返回一个新的可迭代对象(函数`iter`可生成)。
 
 - `__next__(self)`
 
