@@ -2,7 +2,7 @@
 layout: post
 title: Python3 协程(Coroutine) 与 asyncio
 description: 协程、asyncio、async/await
-modified: 2017-06-02
+modified: 2018-04-18
 published: true
 tags: [Python]
 ---
@@ -220,7 +220,7 @@ import threading
 
 async def normal_sleep(w, i):
     print('[{}] id ({}) normal sleep 2 seconds.'.format(w, i))
-    time.sleep(1)
+    time.sleep(2)
     print('[{}] id ({}) ok'.format(w, i))
 
 async def worker(name):
@@ -268,7 +268,7 @@ handle 2..
 [B] id (2) ok
 <- end B.
 
-Total time 6.02s
+Total time 12.02s
 ```
 
 观察以上输出，发现程序共一个线程是串行执行的，就是因为使用了`time.sleep`，现在我们改成`asyncio.sleep(2)`
@@ -277,7 +277,7 @@ Total time 6.02s
 ...
 async def async_sleep():
     print('async sleep 2 seconds.')
-    await asyncio.sleep(1)
+    await asyncio.sleep(2)
 ...
 ```
 
@@ -308,10 +308,10 @@ handle 2..
 [B] id (2) ok
 <- end B.
 
-Total time 3.01s
+Total time 6.01s
 ```
 
-程序也共一个线程，当遇到`asyncio.sleep(1)`时会被挂起，`EventLoop`去处理另一个任务并等待返回结果，总的运行时间大大减小，异步非阻塞，这看起来像是多线程在执行，这就是协程的最大特点。
+程序也共一个线程，当遇到`asyncio.sleep(2)`时会被挂起，`EventLoop`去处理另一个任务并等待返回结果，总的运行时间大大减小，异步非阻塞，这看起来像是多线程在执行，这就是协程的最大特点。
 
 **参考**
 
