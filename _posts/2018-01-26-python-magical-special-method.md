@@ -2,7 +2,7 @@
 layout: post
 title: Python特殊方法
 description: Python常用特殊方法总结
-modified:
+modified: 2018-06-24
 tags: [Python]
 readtimes: 15
 published: True
@@ -54,7 +54,7 @@ __init__ called
 
 - `__bool__(self)`
 
-    调用`bool(obj)`时返回，返回值是`True`或者`False`。如果调用`bool(obj)`时，没有定义`__boo__`时会会去调用`__len__`方法返回非零为`True`，如果这两个方法都没有定义那么默认返回`True`。
+    调用`bool(obj)`时返回，返回值是`True`或者`False`，在python2中方法名为`__nonzero__`。如果调用`bool(obj)`时，没有定义`__bool__`时会会去调用`__len__`方法返回非零为`True`，如果这两个方法都没有定义那么默认返回`True`。
 
 ### 比较(comparison)
 
