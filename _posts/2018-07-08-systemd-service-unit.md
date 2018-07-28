@@ -2,7 +2,7 @@
 layout: post
 title: Systemd中Service单元介绍
 description: 编写systemd中service单元的模板
-modified: 
+modified: 2018-07-29
 tags: [Linux, Shell]
 readtimes: 10
 published: true
@@ -91,7 +91,7 @@ Alias=sshd.service
 | Option | Description |
 | --- | --- |
 | `Type=` |  为`simple`，`forking`，`oneshot` ，`dbus`，`notify`或`idle` |
-| `ExecStart=` | 指定启用某个程序或者脚本的命令，如果在命令之前加`-`指定脚本运行非零退出也不标记faild|
+| `ExecStart=` | 指定启用某个程序或者脚本的命令，如果在命令之前加`-`指定脚本运行非零退出也不标记faild，必须使用绝对路径 |
 | `ExecStartPre=` | 启动程序之前执行的命令，可以指定多条。前面加`-`非零退出也继续执行 |
 | `ExecStartPost=` | 启动程序后执行的命令。 |
 | `ExecStop=` | 指定`systemctl stop unit-name`时运行的命令，如不指定执行stop时直接发送kill信号 |
@@ -114,7 +114,7 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-Type=smile
+Type=simple
 User=anonymous
 WorkingDirectory=/home/anonymous
 ExecStart=some_can_execute --option=123
