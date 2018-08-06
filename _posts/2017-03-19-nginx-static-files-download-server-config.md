@@ -2,7 +2,7 @@
 layout: post
 title: Nginx局域网搭建静态文件下载服务器
 description: 用Nginx做内网的文件下载服务器
-modified: 2017-08-24
+modified: 2018-08-06
 published: true
 tags: [Nginx]
 readtimes: 5
@@ -36,6 +36,8 @@ server {
                 autoindex_exact_size off;
                 # 默认为off，显示的文件时间为GMT时间，on为本地时间
                 autoindex_localtime on;
+                # 修复中文乱码
+                charset utf-8,gbk;
         }
 }
 ```
