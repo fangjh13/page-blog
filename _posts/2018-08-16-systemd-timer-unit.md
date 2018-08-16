@@ -8,8 +8,6 @@ readtimes: 5
 published: true
 ---
 
-## Systemd 中的timer单元
-
 [上一篇](https://blog.fangjiahui.me/systemd-service-unit/)讲了systemd 中的service单元，这次记录一下 timer 单元。timer 必须依赖 service 单元来配置，可以用来做替代 crontab 的选择。
 
 timer单元以`.timer`结尾，中间包含`[Timer]`块如下面所示是 Ubuntu下的`apt-daily.timer`，该目录下也存在一个`apt-daily.service`服务文件配合一起使用。
