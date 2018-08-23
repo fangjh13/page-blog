@@ -2,7 +2,7 @@
 layout: post
 title: Systemd中Service单元介绍
 description: 编写systemd中service单元的模板
-modified: 2018-08-01
+modified: 2018-08-23
 tags: [Linux, Shell]
 readtimes: 10
 published: true
@@ -96,7 +96,7 @@ Alias=sshd.service
 | `ExecStartPost=` | 启动程序后执行的命令。 |
 | `ExecStop=` | 指定`systemctl stop unit-name`时运行的命令，如不指定执行stop时直接发送kill信号 |
 | `ExecReload=` | 指定`systemctl reload unit-name`时运行的命令如更新配置文件 |
-| `Restart=` | 指定systemd程序退出时的操作，如 `always`， `on-success`， `on-failure`， `on-abnormal`，`on-abort`，或者 `on-watchdog` |
+| `Restart=` | 当服务进程正常退出、异常退出、被杀死、超时的时候， 是否重新启动该服务。该值可以是 `always`， `on-success`， `on-failure`， `on-abnormal`，`on-abort`，或者 `on-watchdog`，如`on-failure`表示仅在服务进程异常退出时重启， 所谓"异常退出"是指： 退出码不为"0" |
 | `RestartSec=` | 重启间隔时间 |
 | `TimeoutStartSec=` | 配置等待启动的时间。如果守护程序服务未在配置的时间内发出启动完成信号，则该服务将被视为失败，并将再次关闭。 |
 | `RemainAfterExit=` | 一般与`Type=onshot`使用，当设置为`yes`时，服务即使退出也为active状态，默认为`no` |
