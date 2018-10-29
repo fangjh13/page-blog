@@ -2,7 +2,7 @@
 layout: post
 title: Systemd中Service单元介绍
 description: 编写systemd中service单元的模板
-modified: 2018-08-23
+modified: 2018-10-29
 tags: [Linux, Shell]
 readtimes: 10
 published: true
@@ -126,4 +126,22 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
+加一个守护gunicorn的服务，我一般用在部署flask应用上。
 
+```shell
+[Unit]
+Description=Gunicorn instance to serve myproject
+Requires=network-online.target
+After=network.target
+
+[Service]
+User=project user
+Group=www-data   # nginx group
+WorkingDirectory=/path/to/your/project
+Environment="PATH=/path/to/venv/bin"
+ExecStart=/path/to/venv/bin/gunicorn --workers 4 --bind unix:ftown.sock -m 007 manage:app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
