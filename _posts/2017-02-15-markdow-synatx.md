@@ -51,15 +51,15 @@ another [link][2].
 
 ### Inline Images
 
-`Logo: ![favicon](https://omv6w8gwo.qnssl.com/favicon.ico "Title")`
+`Logo: ![favicon](https://img.fythonfang.com/favicon.ico "Title")`
 
-Logo: ![favicon](https://omv6w8gwo.qnssl.com/favicon.ico "Title")
+Logo: ![favicon](https://img.fythonfang.com/favicon.ico "Title")
 
 ### Linked Images
 
-`Linked logo: [![Fython](https://omv6w8gwo.qnssl.com/favicon.ico "Fython")](https://www.google.com/ "Fython")`
+`Linked logo: [![Fython](https://img.fythonfang.com/favicon.ico "Fython")](https://www.google.com/ "Fython")`
 
-Linked logo: [![Fython](https://omv6w8gwo.qnssl.com/favicon.ico "Fython")](https://www.google.com/ "Fython")
+Linked logo: [![Fython](https://img.fythonfang.com/favicon.ico "Fython")](https://www.google.com/ "Fython")
 
 ### Unordered Lists
 

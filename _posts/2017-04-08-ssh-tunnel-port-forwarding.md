@@ -10,7 +10,7 @@ image:
   background: triangular.png
 ---
 
-![](https://omv6w8gwo.qnssl.com/ssh-10.jpg)
+![](https://img.fythonfang.com/ssh-10.jpg)
 
 > Secure Shell (SSH) is a cryptographic network protocol for operating network services securely over an unsecured network. The best known example application is for remote login to computer systems by users.
 

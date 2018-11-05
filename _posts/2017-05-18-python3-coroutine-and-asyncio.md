@@ -133,7 +133,7 @@ follow(f, filter('python', printer()))
 
 上面的效果等同于`tail -f access-log | grep python`，`filter`也是一个协程并且数据可以传递所以先`send`到`filter`然后再到`printer`显示出来。这就是协程的管道。你还可以像这样的`follow(f, filter('python', filter('string', printer())))`就两次过滤等于用了两次`grep`。
 
-![](https://omv6w8gwo.qnssl.com/Screenshot%20from%202017-05-16%2019-24-22.png)
+![](https://img.fythonfang.com/Screenshot%20from%202017-05-16%2019-24-22.png)
 
 ### 0x03. asyncio
 `asyncio`是Python 3.4中新增的模块，是一个基于事件循环的实现异步I/O的模块，它提供了一种机制，使得你可以用协程（coroutines）、IO复用（multiplexing I/O）在单线程环境中编写并发模型。
@@ -193,7 +193,7 @@ Compute 1 + 2 ...
 
 这是`coroutine`嵌套的例子，当事件循环(`EventLoop`)开始运行时，它会在Task中寻找coroutine来执行调度，因为事件循环注册了`print_sum()`，然后`print_sum()`被调用，执行`result = yield from compute(x, y)`这条语句，因为`compute()`自身就是一个`coroutine`，因此`print_sum()`这个协程就会暂时被挂起，`compute()`被加入到事件循环中，程序流执行`compute()`中的print语句，打印”Compute %s + %s …”，然后执行了`yield from asyncio.sleep(1.0)`，因为`asyncio.sleep()`也是一个`coroutine`，接着`compute()`就会被挂起，等待计时器读秒，在这1秒的过程中，事件循环会在队列中查询可以被调度的`coroutine`，而因为此前`print_sum()`与`compute()`都被挂起了没有其余的`coroutine`，因此事件循环会停下来等待协程的调度，当计时器读秒结束后，程序流便会返回到`compute()`中执行`return`语句，结果会返回到`print_sum()`中的`result`中，最后打印`result`，事件队列中没有可以调度的任务了，此时`loop.close()`把事件队列关闭，程序结束。
 
-![](https://omv6w8gwo.qnssl.com/coroutine_chain.png)
+![](https://img.fythonfang.com/coroutine_chain.png)
 
 ### 0x04. one more thing
 Python3.5中又添加了` async def`、`await`这样就使得协程变得更加易用了。[PEP 492](https://www.python.org/dev/peps/pep-0492/)中详细说明了使用`async`、`await`来定义`coroutine`避免和`generator`混淆。
