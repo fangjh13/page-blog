@@ -2,7 +2,7 @@
 layout: post
 title: 使用 Cython 加密 Python 项目
 description: 加密保护 Python 代码
-modified: 2018-11-03
+modified: 2018-11-12
 tags: [Python]
 readtimes: 10
 published: true
@@ -40,17 +40,19 @@ for path, dirs, files in os.walk(cur_dir, topdown=True):
     for file_name in files:
         file = os.path.join(path, file_name)
         if os.path.splitext(file)[1] == '.py':
-            #  copy __init__.py resolve package cannot be imported
-            if file_name == '__init__.py':
+            if file_name not in exclude_files:
+                #  copy __init__.py resolve package cannot be imported
+                if file_name == '__init__.py':
+                    shutil.copy(file, path.replace(cur_dir, build_dir))
+                if file_name != setup_file:
+                    ext_modules.append(file)
+            else:
                 shutil.copy(file, path.replace(cur_dir, build_dir))
-            if file_name != setup_file:
-                ext_modules.append(file)
         else:
             _exclude = False
             for pattern in exclude_files:
                 if fnmatch.fnmatch(file_name, pattern):
                     _exclude = True
-            # copy other files
             if not _exclude:
                 shutil.copy(file, path.replace(cur_dir, build_dir))
 
