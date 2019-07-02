@@ -2,7 +2,7 @@
 layout: post
 title: Python特殊方法
 description: Python常用特殊方法总结
-modified: 2019-02-03
+modified: 2019-07-19
 tags: [Python]
 readtimes: 15
 published: True
@@ -338,11 +338,11 @@ python在定义class时有很多特殊方法可以定义，它们一般都是以
     
     ```python
     def foo():
-    a = 'hello world'
-    b = 1.0
-    def bar(c):
-        return a, b, c
-    return bar
+        a = 'hello world'
+        b = 1.0
+        def bar(c):
+            return a, b, c
+        return bar
     
     x = foo()  # closure
     print([i.cell_contents for i in x.__closure__])  # ['hello world', 1.0]
