@@ -79,6 +79,8 @@ python在定义class时有很多特殊方法可以定义，它们一般都是以
 
     调用`hash(obj)`时返回的值，是一个整数。当两个对象是相等(`==`)时，他们的hash值也必定相等也就是`hash(obj) == hash(obj)`为`True`。
 
+    > 使用__hash__时记得定义__eq__方法
+
 ### 属性(attribute)
 
 - `__getattr__(self, name)`
