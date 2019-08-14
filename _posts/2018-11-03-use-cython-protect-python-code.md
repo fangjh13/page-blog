@@ -2,7 +2,7 @@
 layout: post
 title: 使用 Cython 加密 Python 项目
 description: 加密保护 Python 代码
-modified: 2018-11-12
+modified: 2019-08-14
 tags: [Python]
 readtimes: 10
 published: true
@@ -19,17 +19,26 @@ cur_dir = os.path.abspath(os.path.dirname(__file__))
 setup_file = os.path.split(__file__)[1]
 build_dir = os.path.join(cur_dir, 'build')
 build_tmp_dir = os.path.join(build_dir, "temp")
-# define exclude dirs
-exclude_dirs = ['.git', '__pycache__', 'test', 'logs', 'venv']
-# defile exclude files
-exclude_files = ['README.md', '.gitignore', '.python-version', 'requirements.txt', '*.pyc', '*.c']
-
-.....
+# define exclude dirs, these dirs will be deleted
+exclude_dirs = ['.git', '__pycache__', 'test', 'logs', 'venv', 'tests']
+# defile exclude files, these files will be deleted
+exclude_files = ['*.md', '.gitignore', '.python-version', 'requirements.txt', '*.pyc', '*.c']
+# these `.py` files will be retained and don't compile to `.so`
+ignore_py_files = ['config.py']
 
 ext_modules = []
+
 # get all build files
 for path, dirs, files in os.walk(cur_dir, topdown=True):
     dirs[:] = [d for d in dirs if d not in exclude_dirs]
+    # touch a new file when __init__.py not exists
+    for _dir in dirs:
+        init_file = os.path.join(path, _dir, '__init__.py')
+        if not os.path.isfile(init_file):
+            print('WARNING: create new empty [{}] file.'.format(init_file))
+            with open(init_file, 'a') as f:
+                pass
+    # create target folder
     if not os.path.isdir(build_dir):
         os.mkdir(build_dir)
     # make empty dirs
@@ -40,14 +49,20 @@ for path, dirs, files in os.walk(cur_dir, topdown=True):
     for file_name in files:
         file = os.path.join(path, file_name)
         if os.path.splitext(file)[1] == '.py':
-            if file_name not in exclude_files:
-                #  copy __init__.py resolve package cannot be imported
+            if file_name in ignore_py_files:
+                # don't compile to .so
+                if file_name not in exclude_files:
+                    shutil.copy(file, path.replace(cur_dir, build_dir))
+            elif file_name in exclude_files:
+                # remove it
+                pass
+            else:
+                # add to compile
                 if file_name == '__init__.py':
+                    #  copy __init__.py resolve package cannot be imported
                     shutil.copy(file, path.replace(cur_dir, build_dir))
                 if file_name != setup_file:
                     ext_modules.append(file)
-            else:
-                shutil.copy(file, path.replace(cur_dir, build_dir))
         else:
             _exclude = False
             for pattern in exclude_files:
