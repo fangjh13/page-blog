@@ -2,7 +2,7 @@
 layout: post
 title: Python特殊方法
 description: Python常用特殊方法总结
-modified: 2019-07-19
+modified: 2019-07-20
 tags: [Python]
 readtimes: 15
 published: True
@@ -50,6 +50,36 @@ python在定义class时有很多特殊方法可以定义，它们一般都是以
 - `__repr__(self)`
 
     调用`repr(obj)`或``obj``返回的字符串，比较偏向机器。
+
+- `__format__(self, format_spec)`
+
+    调用`f string`或`format`时调用，`format(value, format_spec)`相当于`value.__format__(format_spec)`
+
+    ```python
+    class Animal:
+        def __init__(self, name):
+            self.name = name
+    
+        def __format__(self, format_spec):
+            if format_spec == 'view':
+                return f"this is {self.name}"
+            else:
+                raise ValueError('invalid format spec.')
+    
+    dog = Animal('Labrador')
+    
+    print(format(dog, "view"))
+    print("{0:view}".format(dog))
+    print(f"{dog:view}")
+    ```
+
+    三种方式返回都一样如下
+
+    ```shell
+    this is Labrador
+    this is Labrador
+    this is Labrador
+    ```
 
 - `__bytes__(self)`
 
