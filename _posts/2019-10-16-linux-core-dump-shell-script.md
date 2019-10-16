@@ -1,14 +1,12 @@
 ---
 layout: post
-title: Core dump 解密sh脚本
-description: 使用 linux core dump 解密shell脚本
+title: 使用 Core dump 解密加密的脚本
+description: linux core dump 解密sh脚本
 modified: 2019-10-16
 tags: [Shell]
 readtimes: 3
 published: true
 ---
-
-# 使用 Core dump 解密加密的脚本
 
 之前遇到网上的集成的shell脚本有点问题想手动修改下，发现脚本是加密的，网上找了好久发现有`gzexe`、`shc`加密方法都尝试了一遍，可惜解密都不成功，最后用了一个粗暴的办法就是任何程序总要加载到内存运行的吧，那就直接中断coredump查看内存里的内容，以下是具体方法。
 
