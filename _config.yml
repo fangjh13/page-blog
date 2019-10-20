@@ -87,4 +87,5 @@ exclude:
   - package.json
   - spec
   - tmp
+  - vendor/bundle
 baseurl: https://blog.fangjiahui.me
