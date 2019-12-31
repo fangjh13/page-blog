@@ -3,7 +3,7 @@ layout: post
 title: Markdown quick reference
 description: Markdown syntax reference
 modified: 2018-01-22
-tags: [Mardown]
+tags: [Markdown]
 image:
   feature: markdown1-4.png
 ---
