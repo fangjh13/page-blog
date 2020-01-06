@@ -2,7 +2,7 @@
 layout: post
 title: 通过谷歌gRPC部署线上机器学习模型
 description: Python gRPC 在Flask中远程调用
-modified: 2019-12-31
+modified: 2020-1-6
 tags: [gRPC,Flask,Python]
 readtimes: 10
 published: true
