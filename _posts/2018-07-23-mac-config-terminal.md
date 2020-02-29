@@ -64,6 +64,12 @@ plugins=(
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
+- [*zsh-completions*](https://github.com/zsh-users/zsh-completions) 原生zsh功能补充，可以认为某些功能的尝鲜版稳定了会被加入的官方版本中
+
+```shell
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+```
+
 - [*zsh-syntax-highlighting*](https://github.com/zsh-users/zsh-syntax-highlighting) 高亮不同的命令插件
 
 ```shell
