@@ -2,7 +2,7 @@
 layout: post
 title: Mac终端(Terminal)配置
 description: mac上终端配置
-modified: 
+modified: 2020-02-29
 tags: [mac,iTerm]
 readtimes: 
 published: true
