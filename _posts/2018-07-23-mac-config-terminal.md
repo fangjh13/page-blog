@@ -82,6 +82,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 plugins=(
   git
   zsh-autosuggestions
+  zsh-completions
   zsh-syntax-highlighting
 )
 ```
