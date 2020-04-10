@@ -12,3 +12,6 @@ image:
 ---
 
 {: .notice}
+
+![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)
+{: .image-right}
