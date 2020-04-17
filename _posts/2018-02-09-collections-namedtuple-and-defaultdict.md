@@ -8,7 +8,6 @@ readtimes: 5
 published: True
 ---
 
-
 `collections`模块是Python中对内置类型(dict, list, tuple)的拓展。就是说它们本身具有普通内置类型的所有特性，并添加了新的功能。
 
 ### namedtuple()
@@ -32,7 +31,7 @@ point(x=3, y=4)
 
 `namedtuple`有几个比较有用的方法和属性
 
-- `somenamedtuple._make(iterable)`从可迭代对象中取值，长度必须和传入的field_names一致
+- `SomeNamedTuple._make(iterable)`类方法，从可迭代对象中取值，长度必须和传入的field_names一致，返回一个新的对象
 - `somenamedtuple._asdict()`方法返回一个有序字典(OrderedDict)
 - `somenamedtuple._replace(**kwargs)`方法替换值，返回一个新的对象，原来的不变
 - `somenamedtuple._fields`属性返回键名(field name)，可用于创建新的named tuple
@@ -119,4 +118,5 @@ dict_items([('key', [])])
 
 1. [https://docs.python.org/](https://docs.python.org/3/library/collections.html)
 2. [https://github.com/](https://github.com/yasoob/intermediatePython/blob/master/collections.rst)
+
 

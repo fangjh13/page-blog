@@ -3,7 +3,7 @@ layout: post
 title: TCP连接和各状态浅析
 description: 详解linux中TCP连接与断开与其中的状态
 modified: 2020-02-13
-tags: [Linux]
+tags: [Linux, Network]
 readtimes: 10
 published: true
 image:
