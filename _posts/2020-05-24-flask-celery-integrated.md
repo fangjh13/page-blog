@@ -7,7 +7,7 @@ tags: [Python,Celery]
 readtimes: 5
 published: true
 image:
-  feature: markdown1-4.png
+  feature: 
   background: 
 ---
 
