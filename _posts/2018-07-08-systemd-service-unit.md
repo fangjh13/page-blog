@@ -2,7 +2,7 @@
 layout: post
 title: Systemd中Service单元介绍
 description: 编写systemd中service单元的模板
-modified: 2019-03-14
+modified: 2020-12-05
 tags: [Linux, Shell]
 readtimes: 10
 published: true
@@ -102,6 +102,17 @@ Alias=sshd.service
 | `RemainAfterExit=` | 一般与`Type=onshot`使用，当设置为`yes`时，服务即使退出也为active状态，默认为`no` |
 | `Environment=`     | 指定环境变量                                                 |
 | `EnvironmentFile=` | 指定环境变量文件                                             |
+
+
+还有一些可执行文件的特殊前缀，比如上面提到的`-`
+
+| 前缀 | 效果 |
+| --- | --- |
+| `@`  | 如果在绝对路径前加上可选的 "@" 前缀，则可执行文件中`argv[0]`为第二个参数传递给被执行的进程(而不是实际的文件名)，后面跟着指定的进一步参数。|
+| `-` |  如果在绝对路径前加上可选的 "-" 前缀，那么即使该进程以失败状态(例如非零的返回值或者出现异常)退出，也会被视为成功退出 |
+| `+` | 如果在绝对路径前加上可选的 "+" 前缀，那么进程将拥有完全的权限(超级用户的特权)，并且 User=, Group=, CapabilityBoundingSet= 选项所设置的权限限制以及 PrivateDevices=, PrivateTmp= 等文件系统名字空间的配置将被该命令行启动的进程忽略(但仍然对其他 ExecStart=, ExecStop= 有效) |
+| `!` | 与 `+` 类似(进程仍然拥有超级用户的身份)，不同之处在于仅忽略 User=, Group=, SupplementaryGroups= 选项的设置，而例如名字空间之类的其他限制依然有效。注意，当与 DynamicUser= 一起使用时，将会在执行该命令之前先动态分配一对 user/group ，然后将身份凭证的切换操作留给进程自己去执行。|
+| `!!` | 与 `!` 极其相似，仅用于让利用 ambient capability 限制进程权限的单元兼容不支持 ambient capability 的系统(也就是不支持 AmbientCapabilities= 选项)。如果在不支持 ambient capability 的系统上使用此前缀，那么 SystemCallFilter= 与 CapabilityBoundingSet= 将被隐含的自动修改为允许进程自己丢弃 capability 与特权用户的身份(即使原来被配置为禁止这么做)，并且 AmbientCapabilities= 选项将会被忽略。此前缀在支持 ambient capability 的系统上完全没有任何效果。|
 
 更具体可参考`systemd.service(5)`
 
