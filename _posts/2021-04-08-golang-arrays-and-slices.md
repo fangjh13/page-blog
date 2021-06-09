@@ -2,7 +2,7 @@
 layout: post
 title: Golang中的Arrays和Slices
 description: Golang中的Arrays和Slices的比较和相关内置函数介绍
-modified: 2020-04-08
+modified: 2020-06-09
 tags: [Golang]
 readtimes: 5
 published: true
@@ -56,25 +56,32 @@ slice3 := make([]int, 3)
 
 ### slice header
 
-说了很多知道了Slices不是Arrays，那`var slice array[1:4]`中`slice`引用的是什么呢，我们可以想象成**`slice`变量是一个存储指向Slices头(slice header)的指针加一个长度(length)和容量(capacity)的数据结构**
+说了很多知道了Slices不是Arrays，那`var slice = array[1:4]`中`slice`引用的是什么呢，我们可以想象成**`slice`变量是一个存储指向Slices头(slice header)的指针加一个长度(length)和容量(capacity)的数据结构**
 
 ```go
 array := [5]int{1, 2, 3, 4, 5}
 
 type sliceHeader struct {
-	Length int
+  Length int
   Capacity   int
   ZerothElement *int
 }
 
 slice := sliceHeader{
-	Length: 3,
+  Length: 3,
   Capacity: 5,
-	ZerothElement: &array[1],
+  ZerothElement: &array[1],
 }
 ```
 
 当然golang里面不是真的这么实现的，Slices不是struct，只用做理解示例。
+
+PS: 我们可以使用`unsafe.Pointer`和`reflect.SliceHeader`查看 slice header
+
+```go
+slice := array[1:4]
+fmt.Printf("%+v", *(*reflect.SliceHeader)(unsafe.Pointer(&slice))) // {Data:824634355504 Len:3 Cap:4}
+```
 
 在Slices传参给函数当作参数时也是传的slice头(slice header)的一个副本给函数，如果有修改slices其实是修改了底层的Arrays，引用这个Arrays的所有Slices都会随之改变。看下面官方博客上的例子
 
@@ -189,4 +196,3 @@ func main() {
 
 1. [https://blog.golang.org/slices-intro](https://blog.golang.org/slices-intro)
 2. [https://blog.golang.org/slices](https://blog.golang.org/slices)
-
