@@ -3,7 +3,7 @@ layout: post
 title: Golang中的Arrays和Slices
 description: Golang中的Arrays和Slices的比较和相关内置函数介绍
 modified: 2020-06-09
-tags: [Golang]
+tags: [Go]
 readtimes: 5
 published: true
 image:
